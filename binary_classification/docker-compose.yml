@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  metrics-store:
+      image: postgres
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=password
+      ports:
+        - "5432:5432"
+      volumes:
+        - ./db/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+
+  grafana:
+      image: grafana/grafana-oss:9.1.6
+      ports:
+        - "3000:3000"
+      environment:
+        GF_SECURITY_ADMIN_USER: nannyml
+        GF_SECURITY_ADMIN_PASSWORD: nannyml
+      volumes:
+        - ./grafana/provisioning:/etc/grafana/provisioning
+
+  nannyml:
+    image: nml  # TODO: update as soon as new version is pushed
+    volumes:
+      - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
+      - ../../nannyml/datasets/data:/data
+    command: "nml run"
+    restart: on-failure

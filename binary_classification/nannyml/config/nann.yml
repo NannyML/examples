@@ -1,0 +1,34 @@
+input:
+  reference_data:
+    path: /data/synthetic_sample_reference.csv
+
+  analysis_data:
+    path: /data/synthetic_sample_analysis.csv
+
+  target_data:
+    path: /data/synthetic_sample_analysis_gt.csv
+    join_column: identifier
+
+output:
+  database:
+    connection_string: postgresql://nannyml:we<3nannyml@metrics-store:5432/nannyml
+    model_name: work_from_home
+
+problem_type: classification_binary
+
+chunker:
+  chunk_period: D
+
+column_mapping:
+  features:
+    - distance_from_office
+    - salary_range
+    - gas_price_per_litre
+    - public_transportation_cost
+    - wfh_prev_workday
+    - workday
+    - tenure
+  timestamp: timestamp
+  y_pred: y_pred
+  y_pred_proba: y_pred_proba
+  y_true: work_home_actual

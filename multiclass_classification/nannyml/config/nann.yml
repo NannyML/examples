@@ -1,0 +1,37 @@
+input:
+  reference_data:
+    path: /data/mc_reference.csv
+
+  analysis_data:
+    path: /data/mc_analysis.csv
+
+  target_data:
+    path: /data/mc_analysis_gt.csv
+    join_column: identifier
+
+output:
+  database:
+    connection_string: postgresql://nannyml:we<3nannyml@metrics-store:5432/nannyml
+    model_name: credit_card_classification
+
+problem_type: classification_multiclass
+
+chunker:
+  chunk_period: D
+
+column_mapping:
+  features:
+    - acq_channel
+    - app_behavioral_score
+    - requested_credit_limit
+    - app_channel
+    - credit_bureau_score
+    - stated_income
+    - is_customer
+  timestamp: timestamp
+  y_pred: y_pred
+  y_pred_proba:
+    prepaid_card: y_pred_proba_prepaid_card
+    highstreet_card: y_pred_proba_highstreet_card
+    upmarket_card: y_pred_proba_upmarket_card
+  y_true: y_true
