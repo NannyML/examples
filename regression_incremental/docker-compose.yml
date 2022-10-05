@@ -1,0 +1,59 @@
+version: '3.9'
+
+services:
+  metrics-store:
+      image: postgres
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=password
+      ports:
+        - "5432:5432"
+      volumes:
+        - ./db/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+  grafana:
+      image: grafana/grafana-oss:9.1.6
+      ports:
+        - "3000:3000"
+      environment:
+        GF_SECURITY_ADMIN_USER: nannyml
+        GF_SECURITY_ADMIN_PASSWORD: nannyml
+      volumes:
+        - ./grafana/provisioning:/etc/grafana/provisioning
+
+  incrementor:
+    build: ./incrementor
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+    user: 1000:1000  # output of ``echo $(id -u):$(id -g)``
+    environment:
+      NML_DATA_DIR: /data
+      NML_OUT_DIR: /data/incremental
+      NML_GLOB_PATTERN: "*analysis*.csv"
+      NML_TIMESTAMP_COLUMN_NAME: timestamp
+      NML_OFFSET: D
+      NML_DELTA_MINUTES: 1
+
+
+  nannyml:
+    depends_on:
+      metrics-store:
+          condition: service_healthy
+      grafana:
+        condition: service_started
+      incrementor:
+        condition: service_completed_successfully
+    image: nml  # TODO: update as soon as new version is pushed
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
+      - ./data:/data
+    tty: true
+    command: "nml run"
+    restart: on-failure

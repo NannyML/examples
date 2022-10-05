@@ -1,0 +1,13 @@
+apiVersion: 1
+
+datasources:
+  - name: nannyml
+    type: postgres
+    uid: te-11s7Vk
+    url: metrics-store:5432
+    user: nannyml
+    database: nannyml
+    secureJsonData:
+      password: 'we<3nannyml'
+    jsonData:
+      sslmode: 'disable'

@@ -1,0 +1,33 @@
+input:
+  reference_data:
+    path: /data/regression_synthetic_reference.csv
+
+  analysis_data:
+    path: /data/incremental/{{year}}/{{month}}/{{day}}/{{hour}}/{{minute}}/regression_synthetic_analysis_with_partial_targets.csv
+
+output:
+  database:
+    connection_string: postgresql://nannyml:we<3nannyml@metrics-store:5432/nannyml
+    model_name: car_price_regression
+
+problem_type: regression
+
+chunker:
+  chunk_period: D
+
+scheduling:
+  interval:
+    minutes: 1
+
+column_mapping:
+  features:
+    - car_age
+    - km_driven
+    - price_new
+    - accident_count
+    - door_count
+    - transmission
+    - fuel
+  timestamp: timestamp
+  y_pred: y_pred
+  y_true: y_true

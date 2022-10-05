@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 services:
   metrics-store:
@@ -10,6 +10,11 @@ services:
         - "5432:5432"
       volumes:
         - ./db/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      healthcheck:
+        test: [ "CMD-SHELL", "pg_isready" ]
+        interval: 10s
+        timeout: 5s
+        retries: 5
 
   grafana:
       image: grafana/grafana-oss:9.1.6
@@ -22,9 +27,14 @@ services:
         - ./grafana/provisioning:/etc/grafana/provisioning
 
   nannyml:
+    depends_on:
+      metrics-store:
+        condition: service_healthy
+      grafana:
+        condition: service_started
     image: nml  # TODO: update as soon as new version is pushed
     volumes:
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
-      - ../../nannyml/datasets/data:/data
+      - ./data:/data
     command: "nml run"
     restart: on-failure
