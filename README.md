@@ -36,11 +36,6 @@
     </strong>
 </p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/NannyML/nannyml/main/media/cbpe_v3.gif" alt="animated">
-</p>
-
-
 # NannyML examples
 
 This repository contains some ready-to-run examples, showcasing some ways to run NannyML and integrate 
