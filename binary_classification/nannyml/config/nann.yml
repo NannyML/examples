@@ -17,7 +17,7 @@ output:
 problem_type: classification_binary
 
 chunker:
-  chunk_period: D
+  chunk_period: W
 
 column_mapping:
   features:

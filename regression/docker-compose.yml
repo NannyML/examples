@@ -29,7 +29,7 @@ services:
   nannyml:
     depends_on:
       metrics-store:
-          condition: service_healthy
+        condition: service_healthy
       grafana:
         condition: service_started
     image: nml  # TODO: update as soon as new version is pushed

@@ -18,10 +18,6 @@ problem_type: regression
 chunker:
   chunk_period: D
 
-scheduling:
-  interval:
-    minutes: 1
-
 column_mapping:
   features:
     - car_age
