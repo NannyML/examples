@@ -54,6 +54,5 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
       - ./data:/data
-    tty: true
     command: "nml run"
     restart: on-failure

@@ -149,7 +149,7 @@ nannyml=> \dt+
  public | target_drift_metrics                      | table | nannyml | permanent   | heap          | 16 kB      |
 ```
 
-We can perform simple queries to inspect some of the data, such as the CBPE performance metrics:
+We can perform simple queries to inspect some of the data, such as the DLE performance metrics:
 
 ```
 nannyml=> select * from dle_performance_metrics limit 10;
