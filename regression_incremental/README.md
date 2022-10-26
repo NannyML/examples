@@ -30,7 +30,7 @@ The *reference*, *analysis* are defined first. They are to be read from the cont
 `/data` directory. 
 
 Take note that the analysis data path has been templated and is now dependent on the time of execution. Both the input
-and output configuration sections support templating.
+and output configuration sections support [templating](https://nannyml.readthedocs.io/en/stable/cli/configuration_file.html?highlight=templating#templating-paths).
 
 Because of the special preprocessing that is required for the simulation of time passing we've already joined a part
 of the target data with the analysis data. This reflects an environment where model target values are only
