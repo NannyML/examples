@@ -17,7 +17,7 @@ All components of the example are running on your local system using containers.
 `Docker compose` as an orchestrator.
 
 Please ensure you have `Docker` (>= 20.10.17) and `Docker compose` (>= 2.10.2) available on your system.
-You can follow the [official installation instructions]() for additional support.
+You can follow the [official installation instructions](https://docs.docker.com/desktop/) for additional support.
 
 ## Walkthrough
 
