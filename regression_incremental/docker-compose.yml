@@ -49,7 +49,7 @@ services:
         condition: service_started
       incrementor:
         condition: service_completed_successfully
-    image: nml  # TODO: update as soon as new version is pushed
+    image: nannyml/nannyml:dev
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration

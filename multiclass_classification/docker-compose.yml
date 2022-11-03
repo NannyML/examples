@@ -32,7 +32,7 @@ services:
         condition: service_healthy
       grafana:
         condition: service_started
-    image: nml  # TODO: update as soon as new version is pushed
+    image: nannyml/nannyml:dev
     volumes:
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
       - ./data:/data
