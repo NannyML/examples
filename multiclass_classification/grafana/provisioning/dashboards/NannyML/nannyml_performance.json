@@ -97,7 +97,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'ROC AUC'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'roc_auc'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -224,7 +224,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'F1'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'f1'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -351,7 +351,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Precision'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'precision'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -478,7 +478,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Recall'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'recall'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -605,7 +605,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Specificity'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'specificity'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -732,7 +732,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Accuracy'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'accuracy'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -859,7 +859,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'ROC AUC'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'roc_auc'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -986,7 +986,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'F1'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'f1'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1113,7 +1113,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Precision'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'precision'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1240,7 +1240,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Recall'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'recall'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1367,7 +1367,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Specificity'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'specificity'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1494,7 +1494,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'Accuracy'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM cbpe_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'accuracy'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -2150,7 +2150,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "credit_card_classification",
           "value": "credit_card_classification"
         },
@@ -2198,8 +2198,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Accuracy",
-          "value": "Accuracy"
+          "text": "accuracy",
+          "value": "accuracy"
         },
         "datasource": {
           "type": "postgres",
@@ -2222,13 +2222,13 @@
     ]
   },
   "time": {
-    "from": "2020-04-30T15:00:14.299Z",
+    "from": "2020-08-29T00:30:58.138Z",
     "to": "2021-01-02T22:02:10.495Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Performance",
   "uid": "23zIgQnVz2",
-  "version": 8,
+  "version": 2,
   "weekStart": ""
 }

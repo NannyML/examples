@@ -44,7 +44,7 @@
         "type": "postgres",
         "uid": "te-11s7Vk"
       },
-      "description": "",
+      "description": "Drift alerts for ${column_names} for method ${method}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -114,7 +114,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM statistical_feature_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  feature_name IN ($feature_names)\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name IN ($column_names)\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -170,7 +170,7 @@
           ]
         }
       ],
-      "title": "Statistical Feature Drift Alerts",
+      "title": "Drift Alerts",
       "type": "stat"
     },
     {
@@ -305,7 +305,7 @@
         "type": "postgres",
         "uid": "te-11s7Vk"
       },
-      "description": "",
+      "description": "Number of alerts for model prediction for method ${method}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -368,7 +368,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -424,7 +424,7 @@
           ]
         }
       ],
-      "title": "Statistical Model Prediction Drift Alerts",
+      "title": "Model Prediction Drift Alerts",
       "type": "stat"
     },
     {
@@ -495,7 +495,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred_proba'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred_proba'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -551,7 +551,7 @@
           ]
         }
       ],
-      "title": "Statistical Model Score Drift Alerts",
+      "title": "Model Score Drift Alerts",
       "type": "stat"
     },
     {
@@ -589,9 +589,6 @@
         "y": 0
       },
       "id": 23,
-      "libraryPanel": {
-        "uid": "px31f74Vk"
-      },
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -625,7 +622,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM target_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_true'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -681,7 +678,7 @@
           ]
         }
       ],
-      "title": "Statistical Target Drift Alerts",
+      "title": "Target Drift Alerts",
       "type": "stat"
     },
     {
@@ -818,9 +815,9 @@
           "format": "time_series",
           "group": [],
           "hide": false,
-          "metricColumn": "metric_name",
+          "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  metric_name AS metric,\n  value,\n  feature_name\nFROM statistical_feature_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  feature_name IN ($feature_names)\nORDER BY 1,2",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  value,\n  column_name\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  column_name IN ($column_names) AND\n  metric_name = '$method'\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -834,13 +831,13 @@
             [
               {
                 "params": [
-                  "feature_name"
+                  "column_name"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "statistical_feature_drift_metrics",
+          "table": "univariate_drift_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -863,9 +860,19 @@
               "datatype": "varchar",
               "name": "",
               "params": [
-                "feature_name",
+                "column_name",
                 "IN",
-                "($feature_names)"
+                "($column_names)"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "metric_name",
+                "=",
+                "'$method'"
               ],
               "type": "expression"
             }
@@ -881,7 +888,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM statistical_feature_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  feature_name IN ($feature_names)\nORDER BY 1",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  column_name IN ($column_names) AND\n  metric_name = '$method'\nORDER BY 1",
           "refId": "B",
           "select": [
             [
@@ -893,7 +900,7 @@
               }
             ]
           ],
-          "table": "statistical_feature_drift_metrics",
+          "table": "univariate_drift_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -916,16 +923,26 @@
               "datatype": "varchar",
               "name": "",
               "params": [
-                "feature_name",
+                "column_name",
                 "IN",
-                "($feature_names)"
+                "($column_names)"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "metric_name",
+                "=",
+                "'$method'"
               ],
               "type": "expression"
             }
           ]
         }
       ],
-      "title": "Univariate Feature Drift: ${feature_names}",
+      "title": "Univariate Drift: ${column_names} [$method]",
       "transformations": [
         {
           "id": "configFromData",
@@ -1338,9 +1355,9 @@
           },
           "format": "time_series",
           "group": [],
-          "metricColumn": "metric_name",
+          "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  metric_name AS metric,\n  value\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred'\nORDER BY 1,2",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  value\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred'\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1352,7 +1369,7 @@
               }
             ]
           ],
-          "table": "statistical_output_drift_metrics",
+          "table": "univariate_drift_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -1375,7 +1392,17 @@
               "datatype": "varchar",
               "name": "",
               "params": [
-                "output_name",
+                "metric_name",
+                "=",
+                "'$method'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "column_name",
                 "=",
                 "'y_pred'"
               ],
@@ -1393,7 +1420,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred'\nORDER BY 1",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred'\nORDER BY 1",
           "refId": "B",
           "select": [
             [
@@ -1405,7 +1432,7 @@
               }
             ]
           ],
-          "table": "statistical_output_drift_metrics",
+          "table": "univariate_drift_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -1428,7 +1455,17 @@
               "datatype": "varchar",
               "name": "",
               "params": [
-                "output_name",
+                "metric_name",
+                "=",
+                "'$method'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "column_name",
                 "=",
                 "'y_pred'"
               ],
@@ -1556,7 +1593,7 @@
           "group": [],
           "metricColumn": "metric_name",
           "rawQuery": true,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  concat(metric_name, ' - ', 'Upmarket Card') AS metric,\n  value\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred_proba_upmarket_card'\nORDER BY 1,2",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  concat(metric_name, ' - ', 'Upmarket Card') AS metric,\n  value\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred_proba_upmarket_card'\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -1609,7 +1646,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred_proba'\nORDER BY 1",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred_proba_upmarket_card'\nORDER BY 1",
           "refId": "B",
           "select": [
             [
@@ -1621,7 +1658,7 @@
               }
             ]
           ],
-          "table": "statistical_output_drift_metrics",
+          "table": "univariate_drift_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -1644,9 +1681,19 @@
               "datatype": "varchar",
               "name": "",
               "params": [
-                "output_name",
+                "metric_name",
                 "=",
-                "'y_pred_proba'"
+                "'$method'"
+              ],
+              "type": "expression"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "column_name",
+                "=",
+                "'y_pred_proba_upmarket_card'"
               ],
               "type": "expression"
             }
@@ -1662,7 +1709,7 @@
           "hide": false,
           "metricColumn": "metric_name",
           "rawQuery": true,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  concat(metric_name, ' - ', 'Highstreet Card') AS metric,\n  value\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred_proba_highstreet_card'\nORDER BY 1,2",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  concat(metric_name, ' - ', 'Highstreet Card') AS metric,\n  value\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred_proba_highstreet_card'\nORDER BY 1,2",
           "refId": "C",
           "select": [
             [
@@ -1715,7 +1762,7 @@
           "hide": false,
           "metricColumn": "metric_name",
           "rawQuery": true,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  concat(metric_name, ' - ', 'Prepaid Card') AS metric,\n  value\nFROM statistical_output_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  output_name = 'y_pred_proba_prepaid_card'\nORDER BY 1,2",
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  concat(metric_name, ' - ', 'Prepaid Card') AS metric,\n  value\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_pred_proba_prepaid_card'\nORDER BY 1,2",
           "refId": "D",
           "select": [
             [
@@ -1894,8 +1941,8 @@
           "format": "time_series",
           "group": [],
           "metricColumn": "metric_name",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  metric_name AS metric,\n  value\nFROM target_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id\nORDER BY 1,2",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  metric_name AS metric,\n  value\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND\n  column_name = 'y_true'\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -1937,8 +1984,8 @@
           "group": [],
           "hide": false,
           "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM target_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id\nORDER BY 1",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM univariate_drift_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$method' AND \n  column_name = 'y_true'\nORDER BY 1",
           "refId": "B",
           "select": [
             [
@@ -1984,7 +2031,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "credit_card_classification",
           "value": "credit_card_classification"
         },
@@ -2031,26 +2078,54 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "acq_channel",
-          "value": "acq_channel"
+          "selected": true,
+          "text": [
+            "y_pred_proba_upmarket_card"
+          ],
+          "value": [
+            "y_pred_proba_upmarket_card"
+          ]
         },
         "datasource": {
           "type": "postgres",
           "uid": "te-11s7Vk"
         },
-        "definition": "select distinct feature_name from statistical_feature_drift_metrics  where model_id=${model_id}",
+        "definition": "select distinct column_name from univariate_drift_metrics  where model_id=${model_id}",
         "hide": 0,
         "includeAll": false,
-        "label": "Features",
+        "label": "Column names",
         "multi": true,
-        "name": "feature_names",
+        "name": "column_names",
         "options": [],
-        "query": "select distinct feature_name from statistical_feature_drift_metrics  where model_id=${model_id}",
+        "query": "select distinct column_name from univariate_drift_metrics  where model_id=${model_id}",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "jensen_shannon",
+          "value": "jensen_shannon"
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "te-11s7Vk"
+        },
+        "definition": "select distinct metric_name from univariate_drift_metrics  where model_id=${model_id}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Method",
+        "multi": false,
+        "name": "method",
+        "options": [],
+        "query": "select distinct metric_name from univariate_drift_metrics  where model_id=${model_id}",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       }
     ]
@@ -2063,6 +2138,6 @@
   "timezone": "",
   "title": "Drift",
   "uid": "ugSEbsnVz2",
-  "version": 7,
+  "version": 10,
   "weekStart": "monday"
 }

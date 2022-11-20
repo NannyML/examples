@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -97,7 +97,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MAE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'mae'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -224,7 +224,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MAPE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'mape'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -351,7 +351,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MSE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'mse'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -478,7 +478,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MSLE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'msle'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -605,7 +605,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'RMSE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'rmse'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -732,7 +732,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'RMSLE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM realized_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'rmsle'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -859,7 +859,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MAE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'mae'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -915,7 +915,7 @@
           ]
         }
       ],
-      "title": "Estimated MAE Alerts",
+      "title": "Estimated  MAE Alerts",
       "type": "stat"
     },
     {
@@ -986,7 +986,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MAPE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'mape'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1113,7 +1113,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MSE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'mse'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1240,7 +1240,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'MSLE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'msle'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1367,7 +1367,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'RMSE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'rmse'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1494,7 +1494,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'RMSLE'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"timestamp\",$__interval),\n  count(*) FILTER (WHERE alert) AS \"alert\"\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND \n  metric_name = 'rmsle'\nGROUP BY 1\nORDER BY 1",
           "refId": "A",
           "select": [
             [
@@ -1889,13 +1889,11 @@
             }
           },
           "mappings": [],
-          "noValue": "No data found",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1958,7 +1956,7 @@
         "x": 0,
         "y": 20
       },
-      "id": 5,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -1980,7 +1978,7 @@
           "format": "time_series",
           "group": [],
           "metricColumn": "metric_name",
-          "rawQuery": false,
+          "rawQuery": true,
           "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  metric_name AS metric,\n  value\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$metric_name'\nORDER BY 1,2",
           "refId": "Values",
           "select": [
@@ -1993,7 +1991,7 @@
               }
             ]
           ],
-          "table": "dle_performance_metrics",
+          "table": "cbpe_performance_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -2033,7 +2031,7 @@
           "group": [],
           "hide": false,
           "metricColumn": "metric_name",
-          "rawQuery": false,
+          "rawQuery": true,
           "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  metric_name AS metric,\n  lower_threshold,\n  upper_threshold\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$metric_name'\nORDER BY 1,2",
           "refId": "Thresholds",
           "select": [
@@ -2054,7 +2052,7 @@
               }
             ]
           ],
-          "table": "dle_performance_metrics",
+          "table": "cbpe_performance_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -2094,7 +2092,7 @@
           "group": [],
           "hide": false,
           "metricColumn": "none",
-          "rawQuery": false,
+          "rawQuery": true,
           "rawSql": "SELECT\n  \"timestamp\" AS \"time\",\n  alert\nFROM dle_performance_metrics\nWHERE\n  $__timeFilter(\"timestamp\") AND\n  model_id = $model_id AND\n  metric_name = '$metric_name'\nORDER BY 1",
           "refId": "Alerts",
           "select": [
@@ -2107,7 +2105,7 @@
               }
             ]
           ],
-          "table": "dle_performance_metrics",
+          "table": "cbpe_performance_metrics",
           "timeColumn": "\"timestamp\"",
           "timeColumnType": "timestamp",
           "where": [
@@ -2176,8 +2174,8 @@
       {
         "current": {
           "selected": false,
-          "text": "3",
-          "value": "3"
+          "text": "1",
+          "value": "1"
         },
         "datasource": {
           "type": "postgres",
@@ -2199,8 +2197,8 @@
       {
         "current": {
           "selected": false,
-          "text": "MAE",
-          "value": "MAE"
+          "text": "mae",
+          "value": "mae"
         },
         "datasource": {
           "type": "postgres",
@@ -2223,13 +2221,13 @@
     ]
   },
   "time": {
-    "from": "2017-01-26T12:24:22.877Z",
-    "to": "2017-03-15T06:13:01.335Z"
+    "from": "2017-02-16T00:58:35.660Z",
+    "to": "2017-03-12T09:38:03.169Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Performance",
-  "uid": "23zIgQnVz3",
-  "version": 1,
+  "uid": "23zIgQnVz2",
+  "version": 2,
   "weekStart": ""
 }
