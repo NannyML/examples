@@ -32,7 +32,7 @@ services:
         condition: service_healthy
       grafana:
         condition: service_started
-    image: nannyml/nannyml:dev
+    image: nannyml/nannyml:0.7.0
     volumes:
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
       - ./data:/data

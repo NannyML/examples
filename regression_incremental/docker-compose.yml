@@ -49,7 +49,7 @@ services:
         condition: service_started
       incrementor:
         condition: service_completed_successfully
-    image: nannyml/nannyml:dev
+    image: nannyml/nannyml:0.7.0
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
