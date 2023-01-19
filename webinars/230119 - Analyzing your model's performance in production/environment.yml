@@ -1,0 +1,17 @@
+name: notebook_nanny
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - jupyter
+  - pandas
+  - numpy
+  - matplotlib
+  - plotly
+  - scikit-learn
+  - lightgbm
+  - nannyml=0.8.1
+  - pip
+  - pip:
+    - --extra-index-url https://test.pypi.org/simple/ 
+    - nannyml==0.8.1.dev381
