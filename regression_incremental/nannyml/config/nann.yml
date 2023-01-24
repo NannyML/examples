@@ -15,6 +15,10 @@ problem_type: regression
 chunker:
   chunk_period: D
 
+store:
+  file:
+    path: /store
+
 scheduling:
   interval:
     minutes: 1

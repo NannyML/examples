@@ -19,6 +19,10 @@ problem_type: classification_multiclass
 chunker:
   chunk_period: D
 
+store:
+  file:
+    path: /store
+
 column_mapping:
   features:
     - acq_channel

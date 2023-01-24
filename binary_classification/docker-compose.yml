@@ -32,9 +32,10 @@ services:
         condition: service_healthy
       grafana:
         condition: service_started
-    image: nannyml/nannyml:0.7.0
+    image: nannyml/nannyml:0.8.2
     volumes:
       - ./nannyml/config/nann.yml:/config/nann.yml  # mount the configuration
       - ./data:/data
+      - ./store:/store
     command: "nml run"
     restart: on-failure

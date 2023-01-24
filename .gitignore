@@ -224,3 +224,5 @@ cython_debug/
 # Project specific stuff
 
 regression_incremental/data/incremental/
+
+*/store/*
