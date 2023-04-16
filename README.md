@@ -51,7 +51,7 @@ visualize them in two Grafana dashboards.
 
 We have examples for the following problem types:
 
-- [Binary classification](regression)
+- [Binary classification](binary_classification)
 - [Multiclass classification](multiclass_classification)
 - [Regression](regression)
 
