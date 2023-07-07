@@ -1,38 +1,113 @@
 input:
   reference_data:
-    path: /data/synthetic_sample_reference.csv
-
+    path: /data/synthetic_car_loan_reference.csv
   analysis_data:
-    path: /data/synthetic_sample_analysis.csv
-
+    path: /data/synthetic_car_loan_analysis.csv
   target_data:
-    path: /data/synthetic_sample_analysis_gt.csv
-    join_column: identifier
+    path: /data/synthetic_car_loan_analysis_target.csv
 
-output:
-  database:
-    connection_string: postgresql://nannyml:we<3nannyml@metrics-store:5432/nannyml
-    model_name: work_from_home
-
-problem_type: classification_binary
-
-chunker:
-  chunk_period: W
-
-store:
-  file:
-    path: /store
-
-column_mapping:
-  features:
-    - distance_from_office
-    - salary_range
-    - gas_price_per_litre
-    - public_transportation_cost
-    - wfh_prev_workday
-    - workday
-    - tenure
-  timestamp: timestamp
-  y_pred: y_pred
-  y_pred_proba: y_pred_proba
-  y_true: work_home_actual
+calculators:
+  - type: univariate_drift
+    name: univariate drift size 5000
+    enabled: True
+    outputs:
+      - &db
+        type: database
+        params:
+          connection_string: postgresql://nannyml:we<3nannyml@metrics-store:5432/nannyml
+          model_name: car_loan
+    params:
+      categorical_methods:
+        - chi2
+        - jensen_shannon
+      continuous_methods:
+        - kolmogorov_smirnov
+        - jensen_shannon
+      column_names: &columns
+        - car_value
+        - salary_range
+        - debt_to_income_ratio
+        - loan_length
+        - repaid_loan_on_prev_car
+        - size_of_downpayment
+        - driver_tenure
+        - repaid
+        - y_pred_proba
+        - y_pred
+      timestamp_column_name: timestamp
+      chunk_size: 5000
+    store: &store
+      path: /store
+      filename: calc1.pkl
+  - type: univariate_drift
+    name: univariate drift daily chunks
+    enabled: True
+    outputs:
+      - <<: *db
+        write_args:
+          filename: univariate_drift_daily.pq
+    params:
+      categorical_methods:
+        - chi2
+        - jensen_shannon
+      continuous_methods:
+        - kolmogorov_smirnov
+        - jensen_shannon
+      column_names: *columns
+      timestamp_column_name: timestamp
+      chunk_period: D
+    store:
+      <<: *store
+      filename: calc2.pkl
+  - type: performance
+    enabled: True
+    outputs:
+      - <<: *db
+        write_args:
+          filename: performance_5000.pq
+    params:
+      metrics: &metrics
+        - roc_auc
+        - f1
+        - precision
+        - specificity
+        - accuracy
+      y_true: repaid
+      y_pred: y_pred
+      y_pred_proba: y_pred_proba
+      problem_type: classification_binary
+      timestamp_column_name: timestamp
+      chunk_size: 5000
+    store:
+      <<: *store
+      filename: calc3.pkl
+  - type: multivariate_drift
+    enabled: True
+    outputs:
+      - <<: *db
+        write_args:
+          filename: multivariate_drift_5000.pq
+    params:
+      timestamp_column_name: timestamp
+      chunk_size: 5000
+      column_names: *columns
+    store:
+      <<: *store
+      filename: calc4.pkl
+  - type: cbpe
+    enabled: True
+    outputs:
+      - <<: *db
+        write_args:
+          filename: cbpe_5000.pq
+    params:
+      timestamp_column_name: timestamp
+      chunk_size: 5000
+      metrics: *metrics
+      y_true: repaid
+      y_pred: y_pred
+      y_pred_proba: y_pred_proba
+      problem_type: classification_binary
+    store:
+      <<: *store
+      filename: calc5.pkl
